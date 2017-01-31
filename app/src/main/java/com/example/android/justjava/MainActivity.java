@@ -58,7 +58,8 @@ public class MainActivity extends AppCompatActivity {
         // int quantity=2;
         quantity = quantity + 1;
         display(quantity);
-       // displayPrice(quantity * 5);
+
+        displayPrice(quantity * 5);
         //displayPrice(noOfCoffees*5);
     }
 
