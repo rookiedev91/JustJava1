@@ -49,7 +49,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Price"
+        android:text="order summary"
         android:textAllCaps="true"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
@@ -57,7 +57,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/price_text_view"
+        android:id="@+id/order_summary_text_view"
         android:textSize="16sp"
         android:textColor="@android:color/black"
         android:text="Total = $0"/>
