@@ -9,7 +9,22 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.android.justjava.MainActivity">
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="toppings"
+        android:textAllCaps="true"
+        android:layout_marginBottom="16dp"
+        android:textSize="16sp"/>
+    <CheckBox
+        android:id="@+id/whipped_cream_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="24dp"
+        android:layout_marginBottom="16dp"
+        android:text="Whipped cream"
+        android:textAllCaps="true"
+        android:textAppearance="?android:textAppearanceMedium" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

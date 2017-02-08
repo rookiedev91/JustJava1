@@ -7,6 +7,7 @@ package com.example.android.justjava;
  * package com.example.android.justjava;
  */
 
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -65,10 +66,12 @@ public class MainActivity extends AppCompatActivity {
     private void display(int number) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + number);
+        //quantityTextView.setTextSize(24);
     }
     private void displayMessage(String message) {
         TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
         orderSummaryTextView.setText(message);
+        orderSummaryTextView.setTextColor(Color.GREEN);
     }
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
