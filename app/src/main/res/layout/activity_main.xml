@@ -1,37 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.android.justjava.MainActivity">
-    <TextView
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="toppings"
-        android:textAllCaps="true"
-        android:layout_marginBottom="16dp"
-        android:textSize="16sp"/>
+        android:hint="@string/name"
+        android:layout_marginBottom="8dp"
+        android:inputType="textCapWords"/>
+    <TextView
+        style="@style/header"
+        android:text="@string/toppings"
+        android:layout_marginBottom="16dp" />
     <CheckBox
         android:id="@+id/whipped_cream_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="24dp"
-        android:layout_marginBottom="16dp"
-        android:text="Whipped cream"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:text="@string/whipped_cream"
         android:textAllCaps="true"
+        android:textColor="#d2691e"
         android:textAppearance="?android:textAppearanceMedium" />
-    <TextView
+    <CheckBox
+        android:id="@+id/chocolate_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Quantity"
-        android:textAllCaps="true"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
         android:layout_marginBottom="16dp"
-        android:textSize="16sp"/>
+        android:text="@string/chocolate"
+        android:textAllCaps="true"
+        android:textColor="#d2691e"
+        android:textAppearance="?android:textAppearanceMedium"/>
+    <TextView
+        android:text="@string/quantity"
+        style="@style/header"
+        android:layout_marginBottom="16dp" />
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:orientation="horizontal"
@@ -61,7 +78,7 @@
         android:text="+"
         android:onClick="increment"/>
     </LinearLayout>
-    <TextView
+    <!--TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="order summary"
@@ -75,14 +92,12 @@
         android:id="@+id/order_summary_text_view"
         android:textSize="16sp"
         android:textColor="@android:color/black"
-        android:text="Total = $0"/>
-
+        android:text="Total = $0"/-->
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAllCaps="true"
-        android:textSize="16sp"
+        style="@style/header"
         android:layout_marginTop="16dp"
-        android:text="Order"
+        android:paddingStart="20dp"
+        android:text="@string/order"
         android:onClick="submitOrder"/>
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

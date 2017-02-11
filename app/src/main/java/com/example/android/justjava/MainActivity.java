@@ -7,12 +7,16 @@ package com.example.android.justjava;
  * package com.example.android.justjava;
  */
 
-import android.graphics.Color;
+import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -41,25 +45,62 @@ public class MainActivity extends AppCompatActivity {
 
     public int noOfCoffees = 2;
     int quantity = 0;
+    int price=5;
     public void submitOrder(View view) {
-        String miniSummary = createOrderSummary(quantity);
-        displayMessage(miniSummary);
+     String miniSummary = createOrderSummary(quantity,checkState1(),checkState2(),name());
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        // intent.setType("*/*");
+        String subject= getString(R.string.header)+name();
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        intent.putExtra(Intent.EXTRA_TEXT, miniSummary);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+        // }
+//        displayMessage(miniSummary);
+        //composeEmail(subject,miniSummary);
+
     }
-    public String createOrderSummary(int quantity){
-        String summary= "Name:Kaptain Kunal" + "\n" +"Quantity: "+quantity+"\n"+"Total = $"+ calculatePrice() + "\n" + "Thank you!";
+   // public void composeEmail(String subject,String miniSummary) {
+
+    public String createOrderSummary(int quantity, boolean check1, boolean check2, String name){
+        String summary= getString(R.string.name1,name())+ "\n" +getString(R.string.whipped)+check1+"\n" +getString(R.string.chocolate1)+check2+"\n"+getString(R.string.quan)+quantity+"\n"+getString(R.string.total)+ calculatePrice() + "\n" + getString(R.string.thanks);
         return summary;
     }
     private int calculatePrice(){
-        return quantity*5;
+        int basePrice=0;
+        if(checkState1())
+            basePrice=price+1;
+        if(checkState2())
+            basePrice=price+1;
+        if(checkState1()&& checkState2())
+            basePrice=price+2;
+        if(!checkState2() && !checkState1())
+            basePrice=price;
+        return quantity*basePrice;
     }
     public void increment(View view) {
         quantity = quantity + 1;
+        if (quantity>=100){
+            quantity=100;
+            Context context = getApplicationContext();
+            CharSequence text = getString(R.string.upper);
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
         display(quantity);
     }
     public void decrement(View view) {
         quantity = quantity - 1;
         if (quantity < 0) {
             quantity = 0;
+            Context context = getApplicationContext();
+            CharSequence text = getString(R.string.lower);
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
         }
         display(quantity);
     }
@@ -68,11 +109,23 @@ public class MainActivity extends AppCompatActivity {
         quantityTextView.setText("" + number);
         //quantityTextView.setTextSize(24);
     }
-    private void displayMessage(String message) {
-        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
-        orderSummaryTextView.setText(message);
-        orderSummaryTextView.setTextColor(Color.GREEN);
+    private String name(){
+        EditText entered = (EditText) findViewById(R.id.name);
+        return entered.getText().toString();
     }
+    private boolean checkState1(){
+        CheckBox checkStateWhipped=(CheckBox) findViewById(R.id.whipped_cream_checkbox);
+        return checkStateWhipped.isChecked();
+    }
+    private boolean checkState2(){
+        CheckBox checkStateWhipped=(CheckBox) findViewById(R.id.chocolate_checkbox);
+        return checkStateWhipped.isChecked();
+    }
+//    private void displayMessage(String message) {
+//        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
+//        orderSummaryTextView.setText(message);
+//        orderSummaryTextView.setTextColor(Color.GREEN);
+//    }
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
